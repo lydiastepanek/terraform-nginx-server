@@ -25,3 +25,8 @@ To run tests (created using
 ```
 cd test && go test
 ```
+
+# Run ansible
+```
+ansible-playbook ansible/playbook.yml
+```

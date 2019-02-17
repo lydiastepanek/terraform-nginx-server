@@ -1,0 +1,11 @@
+---
+- hosts: app
+  become: true
+  tasks:
+    - name: Install nginx
+      raw: |
+        sudo apt-get update
+        sudo apt-get install nginx -y
+    - name: Adjust firewall
+      raw: |
+        sudo ufw allow 'Nginx HTTP'
