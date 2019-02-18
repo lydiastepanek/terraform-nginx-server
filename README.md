@@ -17,11 +17,11 @@ rm -rf .terraform
 terraform init
 terraform apply
 ```
-
-# Run ansible
 * Update the IP addresses for the app server and bastion in `ansible/hosts` and
   `ansible/group_vars/app.yml` files
 * Run ansible:
 ```
 ansible-playbook ansible/playbook.yml
 ```
+* Go to the DNS record for your application load balancer (listed in aws
+  console). For example: http://load-balancer-854570796.us-east-1.elb.amazonaws.com/

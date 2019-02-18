@@ -48,7 +48,7 @@ resource "aws_security_group_rule" "allow_all_from_alb" {
   from_port                = 0
   to_port                  = 65535
   security_group_id        = "${aws_security_group.app_server.id}"
-  source_security_group_id = "${aws_security_group.public_sg.id}"
+  source_security_group_id = "${aws_security_group.alb_sg.id}"
 }
 
 resource "aws_security_group_rule" "app_server_allow_all_outbound" {

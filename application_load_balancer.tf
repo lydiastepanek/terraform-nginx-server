@@ -2,7 +2,7 @@ resource "aws_alb" "load_balancer" {
   name               = "load-balancer"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = ["${aws_security_group.public_sg.id}"]
+  security_groups    = ["${aws_security_group.alb_sg.id}"]
   subnets            = ["${module.my_vpc.public_subnets}"]
 
   tags {
@@ -10,24 +10,13 @@ resource "aws_alb" "load_balancer" {
   }
 }
 
-resource "aws_security_group" "public_sg" {
-  name        = "public_sg"
+resource "aws_security_group" "alb_sg" {
+  name        = "alb_sg"
   description = "public access security group"
   vpc_id      = "${module.my_vpc.vpc_id}"
 
-  egress {
-    # allow all traffic to private SN
-    from_port = "0"
-    to_port   = "0"
-    protocol  = "-1"
-
-    cidr_blocks = [
-      "0.0.0.0/0",
-    ]
-  }
-
   tags {
-    Name = "public_sg"
+    Name = "alb_sg"
   }
 }
 
@@ -36,7 +25,7 @@ resource "aws_security_group_rule" "allow_all" {
   protocol          = "all"
   from_port         = 0
   to_port           = 65535
-  security_group_id = "${aws_security_group.public_sg.id}"
+  security_group_id = "${aws_security_group.alb_sg.id}"
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
