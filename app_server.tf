@@ -7,7 +7,7 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = ["${aws_security_group.app_server.id}"]
 
   tags {
-    Name = "ecs_my_app_server"
+    Name = "my_app_server"
     vpc  = true
   }
 
