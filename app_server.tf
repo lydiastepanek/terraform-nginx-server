@@ -42,6 +42,15 @@ resource "aws_security_group_rule" "allow_ssh_from_bastion" {
   source_security_group_id = "${aws_security_group.bastion.id}"
 }
 
+resource "aws_security_group_rule" "allow_all_from_alb" {
+  type                     = "ingress"
+  protocol                 = "all"
+  from_port                = 0
+  to_port                  = 65535
+  security_group_id        = "${aws_security_group.app_server.id}"
+  source_security_group_id = "${aws_security_group.public_sg.id}"
+}
+
 resource "aws_security_group_rule" "app_server_allow_all_outbound" {
   type              = "egress"
   from_port         = 0

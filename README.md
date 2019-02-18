@@ -18,15 +18,10 @@ terraform init
 terraform apply
 ```
 
-# Tests
-
-To run tests (created using
-[Terratest](https://blog.gruntwork.io/open-sourcing-terratest-a-swiss-army-knife-for-testing-infrastructure-code-5d883336fcd5)):
-```
-cd test && go test
-```
-
 # Run ansible
+* Update the IP addresses for the app server and bastion in `ansible/hosts` and
+  `ansible/group_vars/app.yml` files
+* Run ansible:
 ```
 ansible-playbook ansible/playbook.yml
 ```
