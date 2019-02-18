@@ -17,8 +17,8 @@ module "my_vpc" {
 
 resource "aws_instance" "bastion" {
   count                       = 1
-  ami                         = "${var.app_server_ami}"
-  instance_type               = "t2.2xlarge"
+  ami                         = "${var.bastion_server_ami}"
+  instance_type               = "t1.micro"
   associate_public_ip_address = true
   key_name                    = "${var.key_name}"
   source_dest_check           = false
